@@ -4,6 +4,7 @@ import React from "react";
 import { GameEvent } from "@/data/events";
 import { PositionKey } from "@/data/positions";
 import { getImpactTier } from "@/utils/rating";
+import { NumberInput } from "@/components/NumberInput";
 
 interface EventSectionProps {
   title: string;
@@ -81,15 +82,15 @@ export function EventSection({ title, titleColor, events, values, position, setV
                   {tier.label} impact
                 </span>
               </div>
-              <input
-                type="number" min={0} max={99}
+              <NumberInput
+                min={0} max={99}
                 value={values[event.id] || 0}
-                onChange={(e: React.ChangeEvent<HTMLInputElement>) => setValue(event.id, e.target.value)}
+                onChange={(v) => setValue(event.id, v)}
                 style={{
                   width: 54, textAlign: "center",
                   background: isActive ? "rgba(59,130,246,0.1)" : "rgba(15,23,42,0.6)",
                   border: isActive ? "1.5px solid rgba(59,130,246,0.3)" : "1.5px solid rgba(148,163,184,0.1)",
-                  borderRadius: 8, color: isActive ? "#93c5fd" : "#94a3b8",
+                  borderRadius: "8px 0 0 8px", color: isActive ? "#93c5fd" : "#94a3b8",
                   fontSize: 16, fontWeight: 600, padding: "6px 4px",
                   fontFamily: "'JetBrains Mono', monospace",
                   outline: "none", transition: "all 0.15s",

@@ -24,6 +24,7 @@ Desktop.ini
 .idea/
 .vscode/
 .claude/
+CLAUDE.md
 *.swp
 *.swo
 *~
@@ -48,31 +49,31 @@ pnpm-lock.yaml
 !.yarn/releases
 !.yarn/versions
 
-# === Next.js build ===
+# Next.js build
 /.next/
 /out/
 .next-turbo/
 
-# === TypeScript ===
+# TypeScript
 *.tsbuildinfo
 next-env.d.ts
 
-# === Testing ===
+# Testing
 coverage/
 jest-cache/
 .vitest/
 
-# === Logs ===
+# Logs
 logs/
 *.log
 *.log.*
 
-# === Lint & formatting cache ===
+# Lint & formatting cache
 .eslintcache
 .prettiercache
 
-# === Testing ===
+# Testing
 /coverage
 
-# === Production ===
+# Build
 /build

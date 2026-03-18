@@ -9,8 +9,9 @@ input[type=number] {
 
 input[type=number]::-webkit-inner-spin-button,
 input[type=number]::-webkit-outer-spin-button {
-  opacity: 1;
-  height: 28px;
+  -webkit-appearance: none;
+  margin: 0;
+  display: none;
 }
 
 ::-webkit-scrollbar { width: 6px; }
