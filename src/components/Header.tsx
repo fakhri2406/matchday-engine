@@ -32,6 +32,8 @@ export function Header({ onReset, presets, onLoadPreset }: HeaderProps) {
       display: "flex", alignItems: "center", justifyContent: "space-between",
       flexWrap: "wrap", gap: 12,
       backdropFilter: "blur(20px)",
+      position: "relative",
+      zIndex: 100,
     }}>
       <div style={{ display: "flex", alignItems: "center", gap: 10 }}>
         <img src="/md-engine-icon.png" alt="Matchday Engine" width={28} height={28} style={{ borderRadius: 6 }} />
@@ -56,7 +58,7 @@ export function Header({ onReset, presets, onLoadPreset }: HeaderProps) {
           </button>
           {open && (
             <div style={{
-              position: "absolute", top: "calc(100% + 6px)", right: 0,
+              position: "absolute", top: "calc(100% + 6px)", right: "auto", left: 0,
               background: "rgba(15,23,42,0.95)", border: "1px solid rgba(148,163,184,0.12)",
               borderRadius: 10, padding: 6, minWidth: 200,
               backdropFilter: "blur(20px)",
