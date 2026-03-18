@@ -1,65 +1,90 @@
-import Image from "next/image";
+"use client";
 
-export default function Home() {
+import { useRatingCalculator } from "@/hooks/useRatingCalculator";
+import { PRESETS } from "@/data/presets";
+import { Header } from "@/components/Header";
+import { RatingDisplay } from "@/components/RatingDisplay";
+import { PositionSelector } from "@/components/PositionSelector";
+import { MinutesInput } from "@/components/MinutesInput";
+import { PresetButtons } from "@/components/PresetButtons";
+import { EventSection } from "@/components/EventSection";
+import { RatingBreakdown } from "@/components/RatingBreakdown";
+import { ColorLegend } from "@/components/ColorLegend";
+
+export default function FootballRatingCalculator() {
+  const {
+    position, setPosition,
+    minutes, setMinutes,
+    values, setValue,
+    showBreakdown, setShowBreakdown,
+    tooltipId, setTooltipId,
+    rating, breakdown,
+    ratingColor, posData,
+    positiveFiltered, negativeFiltered,
+    loadPreset, resetAll,
+  } = useRatingCalculator();
+
   return (
-    <div className="flex min-h-screen items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex min-h-screen w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
+    <div style={{
+      minHeight: "100vh",
+      background: "linear-gradient(180deg, #0a0e1a 0%, #111827 40%, #0f172a 100%)",
+      color: "#e2e8f0",
+      fontFamily: "'DM Sans', 'Segoe UI', system-ui, sans-serif",
+      padding: "0",
+    }}>
+      <Header onReset={resetAll} />
+
+      <div style={{ maxWidth: 1200, margin: "0 auto", padding: "20px 16px 60px" }}>
+        <RatingDisplay
+          rating={rating}
+          ratingColor={ratingColor}
+          posLabel={posData.label}
+          minutes={minutes}
         />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the page.tsx file.
-          </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Learning
-            </a>{" "}
-            center.
-          </p>
+
+        <div style={{
+          display: "grid", gridTemplateColumns: "1fr auto", gap: 12, marginBottom: 20,
+        }}>
+          <PositionSelector position={position} onPositionChange={setPosition} />
+          <MinutesInput minutes={minutes} onMinutesChange={setMinutes} />
         </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-          <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={16}
-            />
-            Deploy Now
-          </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
+
+        <PresetButtons presets={PRESETS} onLoadPreset={loadPreset} />
+
+        <div style={{ display: "grid", gridTemplateColumns: "1fr", gap: 16 }}>
+          <EventSection
+            title="Positive Events"
+            titleColor="#22c55e"
+            events={positiveFiltered}
+            values={values}
+            position={position}
+            setValue={setValue}
+            tooltipId={tooltipId}
+            setTooltipId={setTooltipId}
+          />
+          <EventSection
+            title="Negative Events"
+            titleColor="#ef4444"
+            events={negativeFiltered}
+            values={values}
+            position={position}
+            setValue={setValue}
+            tooltipId={tooltipId}
+            setTooltipId={setTooltipId}
+          />
         </div>
-      </main>
+
+        <RatingBreakdown
+          showBreakdown={showBreakdown}
+          onToggle={() => setShowBreakdown(!showBreakdown)}
+          breakdown={breakdown}
+          ratingColor={ratingColor}
+          rating={rating}
+          minutes={minutes}
+        />
+
+        <ColorLegend />
+      </div>
     </div>
   );
 }
