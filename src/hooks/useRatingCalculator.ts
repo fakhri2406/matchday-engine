@@ -47,7 +47,7 @@ export function useRatingCalculator() {
   }, []);
 
   const { rating, breakdown } = useMemo<{ rating: number; breakdown: BreakdownItem[] }>(() => {
-    const minuteScale = clamp(minutes / 90, 0, 1);
+    const minuteScale = clamp((minutes / 90) * 1.8, 0, 1);
     const total = BASE_RATING * minuteScale;
     const bd: BreakdownItem[] = [];
 
