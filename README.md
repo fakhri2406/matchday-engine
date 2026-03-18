@@ -2,8 +2,6 @@
 
 A football player match rating calculator that computes detailed **1.0–10.0** performance ratings based on position-weighted game events, with optional AI-powered natural language analysis.
 
-Built with Next.js 16, React 19, TypeScript, and Tailwind CSS 4.
-
 ## Features
 
 - **Position-Aware Ratings** — 11 positions across GK, DEF, MID, and FWD groups, each with unique event weightings
