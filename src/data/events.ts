@@ -13,12 +13,12 @@ export interface GameEvent {
 export const POSITIVE_EVENTS: GameEvent[] = [
   {
     id: "goals", label: "Goals Scored", desc: "Open play, set piece, or penalty goals",
-    base: 0.55,
+    base: 0.85,
     weights: { GK: 0.7, CB: 0.7, "LB/RB": 0.65, "LWB/RWB": 0.65, CDM: 0.7, CM: 0.75, CAM: 0.9, "LM/RM": 0.8, "LW/RW": 0.9, CF: 1.0, ST: 1.0 }
   },
   {
     id: "assists", label: "Assists", desc: "Direct assist leading to a goal",
-    base: 0.4,
+    base: 0.6,
     weights: { GK: 0.3, CB: 0.4, "LB/RB": 0.75, "LWB/RWB": 0.7, CDM: 0.55, CM: 0.75, CAM: 0.9, "LM/RM": 0.8, "LW/RW": 0.85, CF: 0.8, ST: 0.7 }
   },
   {
@@ -63,7 +63,7 @@ export const POSITIVE_EVENTS: GameEvent[] = [
   },
   {
     id: "clearances", label: "Clearances", desc: "Clearing the ball from danger",
-    base: 0.07,
+    base: 0.05,
     weights: { GK: 0.5, CB: 0.85, "LB/RB": 0.7, "LWB/RWB": 0.6, CDM: 0.5, CM: 0.3, CAM: 0.1, "LM/RM": 0.15, "LW/RW": 0.05, CF: 0.05, ST: 0.05 }
   },
   {
@@ -73,7 +73,7 @@ export const POSITIVE_EVENTS: GameEvent[] = [
   },
   {
     id: "aerialDuelsWon", label: "Aerial Duels Won", desc: "Winning a header contest",
-    base: 0.08,
+    base: 0.06,
     weights: { GK: 0.15, CB: 0.85, "LB/RB": 0.4, "LWB/RWB": 0.35, CDM: 0.55, CM: 0.45, CAM: 0.25, "LM/RM": 0.25, "LW/RW": 0.2, CF: 0.6, ST: 0.8 }
   },
   {
@@ -118,7 +118,7 @@ export const POSITIVE_EVENTS: GameEvent[] = [
   },
   {
     id: "shotsOnTarget", label: "Shots on Target", desc: "Shot that forces a save or scores",
-    base: 0.1,
+    base: 0.10,
     weights: { GK: 0.05, CB: 0.2, "LB/RB": 0.25, "LWB/RWB": 0.3, CDM: 0.3, CM: 0.45, CAM: 0.8, "LM/RM": 0.6, "LW/RW": 0.75, CF: 0.85, ST: 0.9 }
   },
   {
@@ -196,7 +196,7 @@ export const NEGATIVE_EVENTS: GameEvent[] = [
   },
   {
     id: "missedBigChance", label: "Missed Big Chance", desc: "Missing a clear goal opportunity",
-    base: -0.35,
+    base: -0.25,
     weights: { GK: 0.05, CB: 0.2, "LB/RB": 0.25, "LWB/RWB": 0.3, CDM: 0.3, CM: 0.4, CAM: 0.65, "LM/RM": 0.5, "LW/RW": 0.75, CF: 0.9, ST: 1.0 }
   },
   {
