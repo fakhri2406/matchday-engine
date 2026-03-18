@@ -6,7 +6,7 @@ import { Header } from "@/components/Header";
 import { RatingDisplay } from "@/components/RatingDisplay";
 import { PositionSelector } from "@/components/PositionSelector";
 import { MinutesInput } from "@/components/MinutesInput";
-import { PresetButtons } from "@/components/PresetButtons";
+import { AiPromptInput } from "@/components/AiPromptInput";
 import { EventSection } from "@/components/EventSection";
 import { RatingBreakdown } from "@/components/RatingBreakdown";
 import { ColorLegend } from "@/components/ColorLegend";
@@ -32,7 +32,7 @@ export default function FootballRatingCalculator() {
       fontFamily: "'DM Sans', 'Segoe UI', system-ui, sans-serif",
       padding: "0",
     }}>
-      <Header onReset={resetAll} />
+      <Header onReset={resetAll} presets={PRESETS} onLoadPreset={loadPreset} />
 
       <div style={{ maxWidth: 1200, margin: "0 auto", padding: "20px 16px 60px" }}>
         <RatingDisplay
@@ -49,7 +49,7 @@ export default function FootballRatingCalculator() {
           <MinutesInput minutes={minutes} onMinutesChange={setMinutes} />
         </div>
 
-        <PresetButtons presets={PRESETS} onLoadPreset={loadPreset} />
+        <AiPromptInput onResult={loadPreset} />
 
         <div style={{ display: "grid", gridTemplateColumns: "1fr", gap: 16 }}>
           <EventSection
