@@ -16,12 +16,11 @@ export function Header({ onReset }: HeaderProps) {
       flexWrap: "wrap", gap: 12,
       backdropFilter: "blur(20px)",
     }}>
-      <div style={{ display: "flex", alignItems: "center", gap: 14 }}>
-        <div>
-          <div style={{ fontSize: 18, fontWeight: 700, letterSpacing: "-0.02em", color: "#f1f5f9" }}>
-            Matchday Engine
-          </div>
-        </div>
+      <div style={{ display: "flex", alignItems: "center", gap: 10 }}>
+        <img src="/md-engine-icon.png" alt="Matchday Engine" width={28} height={28} style={{ borderRadius: 6 }} />
+        <span style={{ fontSize: 18, fontWeight: 700, letterSpacing: "-0.02em", color: "#f1f5f9" }}>
+          Matchday Engine
+        </span>
       </div>
       <button onClick={onReset} style={{
         background: "rgba(239,68,68,0.1)", border: "1px solid rgba(239,68,68,0.25)",
