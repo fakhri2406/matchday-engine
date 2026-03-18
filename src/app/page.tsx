@@ -1,15 +1,15 @@
 "use client";
 
-import { useRatingCalculator } from "@/hooks/useRatingCalculator";
-import { PRESETS } from "@/data/presets";
-import { Header } from "@/components/Header";
-import { RatingDisplay } from "@/components/RatingDisplay";
-import { PositionSelector } from "@/components/PositionSelector";
-import { MinutesInput } from "@/components/MinutesInput";
-import { AiPromptInput } from "@/components/AiPromptInput";
-import { EventSection } from "@/components/EventSection";
-import { RatingBreakdown } from "@/components/RatingBreakdown";
-import { ColorLegend } from "@/components/ColorLegend";
+import {useRatingCalculator} from "@/hooks/useRatingCalculator";
+import {PRESETS} from "@/data/presets";
+import {Header} from "@/components/Header";
+import {RatingDisplay} from "@/components/RatingDisplay";
+import {PositionSelector} from "@/components/PositionSelector";
+import {MinutesInput} from "@/components/MinutesInput";
+import {AiPromptInput} from "@/components/AiPromptInput";
+import {EventSection} from "@/components/EventSection";
+import {RatingBreakdown} from "@/components/RatingBreakdown";
+import {ColorLegend} from "@/components/ColorLegend";
 
 export default function FootballRatingCalculator() {
   const {
@@ -32,9 +32,9 @@ export default function FootballRatingCalculator() {
       fontFamily: "'DM Sans', 'Segoe UI', system-ui, sans-serif",
       padding: "0",
     }}>
-      <Header onReset={resetAll} presets={PRESETS} onLoadPreset={loadPreset} />
+      <Header onReset={resetAll} presets={PRESETS} onLoadPreset={loadPreset}/>
 
-      <div style={{ maxWidth: 1200, margin: "0 auto", padding: "20px 16px 60px" }}>
+      <div style={{maxWidth: 1200, margin: "0 auto", padding: "20px 16px 60px"}}>
         <RatingDisplay
           rating={rating}
           ratingColor={ratingColor}
@@ -45,13 +45,13 @@ export default function FootballRatingCalculator() {
         <div style={{
           display: "grid", gridTemplateColumns: "1fr auto", gap: 12, marginBottom: 20,
         }}>
-          <PositionSelector position={position} onPositionChange={setPosition} />
-          <MinutesInput minutes={minutes} onMinutesChange={setMinutes} />
+          <PositionSelector position={position} onPositionChange={setPosition}/>
+          <MinutesInput minutes={minutes} onMinutesChange={setMinutes}/>
         </div>
 
-        <AiPromptInput onResult={loadPreset} />
+        <AiPromptInput onResult={loadPreset}/>
 
-        <div style={{ display: "grid", gridTemplateColumns: "1fr", gap: 16 }}>
+        <div style={{display: "grid", gridTemplateColumns: "1fr", gap: 16}}>
           <EventSection
             title="Positive Events"
             titleColor="#22c55e"
@@ -83,7 +83,7 @@ export default function FootballRatingCalculator() {
           minutes={minutes}
         />
 
-        <ColorLegend />
+        <ColorLegend/>
       </div>
     </div>
   );

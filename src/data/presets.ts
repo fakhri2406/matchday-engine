@@ -1,4 +1,4 @@
-import { PositionKey } from "./positions";
+import {PositionKey} from "./positions";
 
 export interface Preset {
   name: string;

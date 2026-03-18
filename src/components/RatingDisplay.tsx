@@ -1,6 +1,5 @@
-import { getRatingLabel } from "@/utils/rating";
-import { clamp } from "@/utils/rating";
-import { BASE_RATING } from "@/data/constants";
+import {clamp, getRatingLabel} from "@/utils/rating";
+import {BASE_RATING} from "@/data/constants";
 
 interface RatingDisplayProps {
   rating: number;
@@ -9,7 +8,7 @@ interface RatingDisplayProps {
   minutes: number;
 }
 
-export function RatingDisplay({ rating, ratingColor, posLabel, minutes }: RatingDisplayProps) {
+export function RatingDisplay({rating, ratingColor, posLabel, minutes}: RatingDisplayProps) {
   return (
     <div style={{
       background: "linear-gradient(135deg, rgba(30,41,59,0.8), rgba(15,23,42,0.9))",
@@ -22,8 +21,15 @@ export function RatingDisplay({ rating, ratingColor, posLabel, minutes }: Rating
       <div style={{
         position: "absolute", inset: 0,
         background: `radial-gradient(ellipse at center, ${ratingColor}12 0%, transparent 70%)`,
-      }} />
-      <div style={{ fontSize: 12, color: "#94a3b8", fontWeight: 500, textTransform: "uppercase", letterSpacing: "0.1em", zIndex: 1 }}>
+      }}/>
+      <div style={{
+        fontSize: 12,
+        color: "#94a3b8",
+        fontWeight: 500,
+        textTransform: "uppercase",
+        letterSpacing: "0.1em",
+        zIndex: 1
+      }}>
         Match Rating
       </div>
       <div style={{
@@ -42,8 +48,8 @@ export function RatingDisplay({ rating, ratingColor, posLabel, minutes }: Rating
       }}>
         {getRatingLabel(rating)}
       </div>
-      <div style={{ fontSize: 12, color: "#64748b", zIndex: 1, marginTop: 4 }}>
-        {posLabel} • {minutes} min played • Base {(BASE_RATING * clamp(minutes/90,0,1)).toFixed(1)}
+      <div style={{fontSize: 12, color: "#64748b", zIndex: 1, marginTop: 4}}>
+        {posLabel} • {minutes} min played • Base {(BASE_RATING * clamp(minutes / 90, 0, 1)).toFixed(1)}
       </div>
     </div>
   );

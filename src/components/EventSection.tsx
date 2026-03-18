@@ -1,10 +1,10 @@
 "use client";
 
 import React from "react";
-import { GameEvent } from "@/data/events";
-import { PositionKey } from "@/data/positions";
-import { getImpactTier } from "@/utils/rating";
-import { NumberInput } from "@/components/NumberInput";
+import {GameEvent} from "@/data/events";
+import {PositionKey} from "@/data/positions";
+import {getImpactTier} from "@/utils/rating";
+import {NumberInput} from "@/components/NumberInput";
 
 interface EventSectionProps {
   title: string;
@@ -17,7 +17,16 @@ interface EventSectionProps {
   setTooltipId: (id: string | null) => void;
 }
 
-export function EventSection({ title, titleColor, events, values, position, setValue, tooltipId, setTooltipId }: EventSectionProps) {
+export function EventSection({
+                               title,
+                               titleColor,
+                               events,
+                               values,
+                               position,
+                               setValue,
+                               tooltipId,
+                               setTooltipId
+                             }: EventSectionProps) {
   return (
     <div style={{
       background: "rgba(30,41,59,0.4)", border: "1px solid rgba(148,163,184,0.06)",
@@ -27,9 +36,9 @@ export function EventSection({ title, titleColor, events, values, position, setV
         padding: "14px 18px", borderBottom: "1px solid rgba(148,163,184,0.06)",
         display: "flex", alignItems: "center", gap: 8,
       }}>
-        <div style={{ width: 8, height: 8, borderRadius: "50%", background: titleColor }} />
-        <span style={{ fontSize: 14, fontWeight: 600, color: "#e2e8f0" }}>{title}</span>
-        <span style={{ fontSize: 12, color: "#64748b" }}>({events.length})</span>
+        <div style={{width: 8, height: 8, borderRadius: "50%", background: titleColor}}/>
+        <span style={{fontSize: 14, fontWeight: 600, color: "#e2e8f0"}}>{title}</span>
+        <span style={{fontSize: 12, color: "#64748b"}}>({events.length})</span>
       </div>
       <div style={{
         display: "grid",
@@ -47,8 +56,8 @@ export function EventSection({ title, titleColor, events, values, position, setV
               opacity: w === 0 ? 0.35 : 1,
               transition: "all 0.15s",
             }}>
-              <div style={{ flex: 1, minWidth: 0 }}>
-                <div style={{ display: "flex", alignItems: "center", gap: 6, marginBottom: 2 }}>
+              <div style={{flex: 1, minWidth: 0}}>
+                <div style={{display: "flex", alignItems: "center", gap: 6, marginBottom: 2}}>
                   <span style={{
                     fontSize: 13, fontWeight: isActive ? 600 : 400,
                     color: isActive ? "#f1f5f9" : "#cbd5e1",
@@ -95,7 +104,9 @@ export function EventSection({ title, titleColor, events, values, position, setV
                   fontFamily: "'JetBrains Mono', monospace",
                   outline: "none", transition: "all 0.15s",
                 }}
-                onFocus={(e: React.FocusEvent<HTMLInputElement>) => { e.target.style.borderColor = "rgba(59,130,246,0.5)"; }}
+                onFocus={(e: React.FocusEvent<HTMLInputElement>) => {
+                  e.target.style.borderColor = "rgba(59,130,246,0.5)";
+                }}
                 onBlur={(e: React.FocusEvent<HTMLInputElement>) => {
                   const active = (parseInt(e.target.value) || 0) > 0;
                   e.target.style.borderColor = active ? "rgba(59,130,246,0.3)" : "rgba(148,163,184,0.1)";

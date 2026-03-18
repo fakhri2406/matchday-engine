@@ -1,13 +1,13 @@
 "use client";
 
-import React, { useState, useEffect, useCallback } from "react";
-import { Preset } from "@/data/presets";
+import React, {useCallback, useEffect, useState} from "react";
+import {Preset} from "@/data/presets";
 
 interface AiPromptInputProps {
   onResult: (preset: Preset) => void;
 }
 
-export function AiPromptInput({ onResult }: AiPromptInputProps) {
+export function AiPromptInput({onResult}: AiPromptInputProps) {
   const [input, setInput] = useState("");
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
@@ -27,8 +27,8 @@ export function AiPromptInput({ onResult }: AiPromptInputProps) {
     try {
       const res = await fetch("/api/analyze", {
         method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ description: input.trim() }),
+        headers: {"Content-Type": "application/json"},
+        body: JSON.stringify({description: input.trim()}),
       });
 
       const data = await res.json();
@@ -70,14 +70,14 @@ export function AiPromptInput({ onResult }: AiPromptInputProps) {
       padding: 16,
       marginBottom: 24,
     }}>
-      <div style={{ fontSize: 13, fontWeight: 600, color: "#94a3b8", marginBottom: 8 }}>
+      <div style={{fontSize: 13, fontWeight: 600, color: "#94a3b8", marginBottom: 8}}>
         AI Match Analyzer
       </div>
       <textarea
         value={input}
         onChange={(e) => setInput(e.target.value)}
         readOnly={loading}
-        placeholder={"Describe a player's performance, e.g. \"Salah scored twice and assisted once as a right winger, caught offside 3 times, played 90 minutes\""}
+        placeholder={"Describe a player's performance, e.g. \"A right winger that played 90 minutes, scored twice, assisted once, caught offside 3 times...\""}
         style={{
           width: "100%",
           minHeight: 80,
@@ -96,7 +96,7 @@ export function AiPromptInput({ onResult }: AiPromptInputProps) {
           if (e.key === "Enter" && (e.metaKey || e.ctrlKey)) handleSubmit();
         }}
       />
-      <div style={{ display: "flex", alignItems: "center", gap: 12, marginTop: 10 }}>
+      <div style={{display: "flex", alignItems: "center", gap: 12, marginTop: 10}}>
         <button
           onClick={handleSubmit}
           disabled={loading || !input.trim()}
@@ -123,7 +123,7 @@ export function AiPromptInput({ onResult }: AiPromptInputProps) {
         >
           {loading ? "Analyzing..." : "Analyze"}
         </button>
-        <span style={{ fontSize: 11, color: "#64748b" }}>
+        <span style={{fontSize: 11, color: "#64748b"}}>
           {loading ? "" : "Cmd+Enter to submit"}
         </span>
       </div>

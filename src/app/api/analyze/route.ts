@@ -1,6 +1,6 @@
 import Anthropic from "@anthropic-ai/sdk";
-import { POSITIVE_EVENTS, NEGATIVE_EVENTS } from "@/data/events";
-import { POSITIONS, PositionKey } from "@/data/positions";
+import {NEGATIVE_EVENTS, POSITIVE_EVENTS} from "@/data/events";
+import {PositionKey, POSITIONS} from "@/data/positions";
 
 const ALL_EVENTS = [...POSITIVE_EVENTS, ...NEGATIVE_EVENTS];
 
@@ -31,36 +31,36 @@ export async function POST(request: Request) {
   const apiKey = process.env.ANTHROPIC_API_KEY;
   if (!apiKey) {
     return Response.json(
-      { error: "api_error", message: "ANTHROPIC_API_KEY is not configured" },
-      { status: 500 }
+      {error: "api_error", message: "ANTHROPIC_API_KEY is not configured"},
+      {status: 500}
     );
   }
 
   try {
-    const { description } = await request.json();
+    const {description} = await request.json();
 
     if (!description || typeof description !== "string" || !description.trim()) {
       return Response.json(
-        { error: "api_error", message: "Description is required" },
-        { status: 500 }
+        {error: "api_error", message: "Description is required"},
+        {status: 500}
       );
     }
 
-    const client = new Anthropic({ apiKey });
+    const client = new Anthropic({apiKey});
 
     const message = await client.messages.create({
       model: "claude-sonnet-4-6-20250514",
       max_tokens: 1024,
       temperature: 0,
       system: buildSystemPrompt(),
-      messages: [{ role: "user", content: description.trim() }],
+      messages: [{role: "user", content: description.trim()}],
     });
 
     const textBlock = message.content.find((b) => b.type === "text");
     if (!textBlock || textBlock.type !== "text") {
       return Response.json(
-        { error: "api_error", message: "No text response from model" },
-        { status: 500 }
+        {error: "api_error", message: "No text response from model"},
+        {status: 500}
       );
     }
 
@@ -73,14 +73,14 @@ export async function POST(request: Request) {
     const parsed = JSON.parse(raw);
 
     if (parsed.error === "not_football") {
-      return Response.json({ error: "not_football" });
+      return Response.json({error: "not_football"});
     }
 
     const validPositions = Object.keys(POSITIONS);
     if (!validPositions.includes(parsed.position)) {
       return Response.json(
-        { error: "api_error", message: `Invalid position: ${parsed.position}` },
-        { status: 500 }
+        {error: "api_error", message: `Invalid position: ${parsed.position}`},
+        {status: 500}
       );
     }
 
@@ -101,6 +101,6 @@ export async function POST(request: Request) {
     });
   } catch (err) {
     const message = err instanceof Error ? err.message : "Unknown error";
-    return Response.json({ error: "api_error", message }, { status: 500 });
+    return Response.json({error: "api_error", message}, {status: 500});
   }
 }

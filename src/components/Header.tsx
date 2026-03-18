@@ -1,7 +1,7 @@
 "use client";
 
-import React, { useState, useEffect, useRef } from "react";
-import { Preset } from "@/data/presets";
+import React, {useEffect, useRef, useState} from "react";
+import {Preset} from "@/data/presets";
 
 interface HeaderProps {
   onReset: () => void;
@@ -9,7 +9,7 @@ interface HeaderProps {
   onLoadPreset: (preset: Preset) => void;
 }
 
-export function Header({ onReset, presets, onLoadPreset }: HeaderProps) {
+export function Header({onReset, presets, onLoadPreset}: HeaderProps) {
   const [open, setOpen] = useState(false);
   const dropdownRef = useRef<HTMLDivElement>(null);
 
@@ -35,14 +35,14 @@ export function Header({ onReset, presets, onLoadPreset }: HeaderProps) {
       position: "relative",
       zIndex: 100,
     }}>
-      <div style={{ display: "flex", alignItems: "center", gap: 10 }}>
-        <img src="/md-engine-icon.png" alt="Matchday Engine" width={28} height={28} style={{ borderRadius: 6 }} />
-        <span style={{ fontSize: 18, fontWeight: 700, letterSpacing: "-0.02em", color: "#f1f5f9" }}>
+      <div style={{display: "flex", alignItems: "center", gap: 10}}>
+        <img src="/md-engine-icon.png" alt="Matchday Engine" width={28} height={28} style={{borderRadius: 6}}/>
+        <span style={{fontSize: 18, fontWeight: 700, letterSpacing: "-0.02em", color: "#f1f5f9"}}>
           Matchday Engine
         </span>
       </div>
-      <div style={{ display: "flex", alignItems: "center", gap: 8 }}>
-        <div ref={dropdownRef} style={{ position: "relative" }}>
+      <div style={{display: "flex", alignItems: "center", gap: 8}}>
+        <div ref={dropdownRef} style={{position: "relative"}}>
           <button onClick={() => setOpen(!open)} style={{
             background: "rgba(148,163,184,0.08)", border: "1px solid rgba(148,163,184,0.15)",
             color: "#94a3b8", padding: "8px 14px", borderRadius: 8, cursor: "pointer",
@@ -50,11 +50,19 @@ export function Header({ onReset, presets, onLoadPreset }: HeaderProps) {
             display: "flex", alignItems: "center", gap: 6,
             transition: "all 0.2s",
           }}
-                  onMouseEnter={(e: React.MouseEvent<HTMLButtonElement>) => { (e.target as HTMLButtonElement).style.background = "rgba(148,163,184,0.15)"; }}
-                  onMouseLeave={(e: React.MouseEvent<HTMLButtonElement>) => { (e.target as HTMLButtonElement).style.background = "rgba(148,163,184,0.08)"; }}
+                  onMouseEnter={(e: React.MouseEvent<HTMLButtonElement>) => {
+                    (e.target as HTMLButtonElement).style.background = "rgba(148,163,184,0.15)";
+                  }}
+                  onMouseLeave={(e: React.MouseEvent<HTMLButtonElement>) => {
+                    (e.target as HTMLButtonElement).style.background = "rgba(148,163,184,0.08)";
+                  }}
           >
             Presets
-            <span style={{ fontSize: 10, transform: open ? "rotate(180deg)" : "rotate(0deg)", transition: "transform 0.2s" }}>▼</span>
+            <span style={{
+              fontSize: 10,
+              transform: open ? "rotate(180deg)" : "rotate(0deg)",
+              transition: "transform 0.2s"
+            }}>▼</span>
           </button>
           {open && (
             <div style={{
@@ -65,15 +73,22 @@ export function Header({ onReset, presets, onLoadPreset }: HeaderProps) {
               zIndex: 50,
             }}>
               {presets.map((p) => (
-                <button key={p.name} onClick={() => { onLoadPreset(p); setOpen(false); }} style={{
+                <button key={p.name} onClick={() => {
+                  onLoadPreset(p);
+                  setOpen(false);
+                }} style={{
                   display: "block", width: "100%", textAlign: "left",
                   background: "transparent", border: "none",
                   color: "#cbd5e1", padding: "8px 12px", borderRadius: 6, cursor: "pointer",
                   fontSize: 13, fontFamily: "inherit",
                   transition: "background 0.15s",
                 }}
-                        onMouseEnter={(e: React.MouseEvent<HTMLButtonElement>) => { e.currentTarget.style.background = "rgba(148,163,184,0.1)"; }}
-                        onMouseLeave={(e: React.MouseEvent<HTMLButtonElement>) => { e.currentTarget.style.background = "transparent"; }}
+                        onMouseEnter={(e: React.MouseEvent<HTMLButtonElement>) => {
+                          e.currentTarget.style.background = "rgba(148,163,184,0.1)";
+                        }}
+                        onMouseLeave={(e: React.MouseEvent<HTMLButtonElement>) => {
+                          e.currentTarget.style.background = "transparent";
+                        }}
                 >
                   {p.name}
                 </button>
@@ -87,9 +102,14 @@ export function Header({ onReset, presets, onLoadPreset }: HeaderProps) {
           fontSize: 13, fontWeight: 500, fontFamily: "inherit",
           transition: "all 0.2s",
         }}
-                onMouseEnter={(e: React.MouseEvent<HTMLButtonElement>) => { (e.target as HTMLButtonElement).style.background = "rgba(239,68,68,0.2)"; }}
-                onMouseLeave={(e: React.MouseEvent<HTMLButtonElement>) => { (e.target as HTMLButtonElement).style.background = "rgba(239,68,68,0.1)"; }}
-        >Reset All</button>
+                onMouseEnter={(e: React.MouseEvent<HTMLButtonElement>) => {
+                  (e.target as HTMLButtonElement).style.background = "rgba(239,68,68,0.2)";
+                }}
+                onMouseLeave={(e: React.MouseEvent<HTMLButtonElement>) => {
+                  (e.target as HTMLButtonElement).style.background = "rgba(239,68,68,0.1)";
+                }}
+        >Reset All
+        </button>
       </div>
     </header>
   );

@@ -1,8 +1,8 @@
 "use client";
 
-import { BreakdownItem } from "@/hooks/useRatingCalculator";
-import { clamp } from "@/utils/rating";
-import { BASE_RATING } from "@/data/constants";
+import {BreakdownItem} from "@/hooks/useRatingCalculator";
+import {clamp} from "@/utils/rating";
+import {BASE_RATING} from "@/data/constants";
 
 interface RatingBreakdownProps {
   showBreakdown: boolean;
@@ -13,9 +13,16 @@ interface RatingBreakdownProps {
   minutes: number;
 }
 
-export function RatingBreakdown({ showBreakdown, onToggle, breakdown, ratingColor, rating, minutes }: RatingBreakdownProps) {
+export function RatingBreakdown({
+                                  showBreakdown,
+                                  onToggle,
+                                  breakdown,
+                                  ratingColor,
+                                  rating,
+                                  minutes
+                                }: RatingBreakdownProps) {
   return (
-    <div style={{ marginTop: 24 }}>
+    <div style={{marginTop: 24}}>
       <button onClick={onToggle} style={{
         background: "rgba(30,41,59,0.6)", border: "1px solid rgba(148,163,184,0.08)",
         borderRadius: "14px 14px " + (showBreakdown ? "0 0" : "14px 14px"),
@@ -25,7 +32,11 @@ export function RatingBreakdown({ showBreakdown, onToggle, breakdown, ratingColo
         transition: "all 0.2s",
       }}>
         <span>Rating Breakdown</span>
-        <span style={{ fontSize: 18, transform: showBreakdown ? "rotate(180deg)" : "rotate(0deg)", transition: "transform 0.2s" }}>▾</span>
+        <span style={{
+          fontSize: 18,
+          transform: showBreakdown ? "rotate(180deg)" : "rotate(0deg)",
+          transition: "transform 0.2s"
+        }}>▾</span>
       </button>
       {showBreakdown && (
         <div style={{
@@ -34,11 +45,11 @@ export function RatingBreakdown({ showBreakdown, onToggle, breakdown, ratingColo
           animation: "fadeIn 0.3s ease",
         }}>
           {breakdown.length === 0 ? (
-            <div style={{ color: "#64748b", fontSize: 13, textAlign: "center", padding: 20 }}>
+            <div style={{color: "#64748b", fontSize: 13, textAlign: "center", padding: 20}}>
               No events entered yet. Adjust the inputs above to see the breakdown.
             </div>
           ) : (
-            <div style={{ display: "flex", flexDirection: "column", gap: 6 }}>
+            <div style={{display: "flex", flexDirection: "column", gap: 6}}>
               <div style={{
                 display: "flex", justifyContent: "space-between", padding: "0 4px 8px",
                 borderBottom: "1px solid rgba(148,163,184,0.06)",
@@ -53,8 +64,8 @@ export function RatingBreakdown({ showBreakdown, onToggle, breakdown, ratingColo
                   padding: "6px 8px", borderRadius: 8,
                   background: b.isPositive ? "rgba(34,197,94,0.04)" : "rgba(239,68,68,0.04)",
                 }}>
-                  <span style={{ fontSize: 13, color: "#cbd5e1" }}>
-                    {b.label} <span style={{ color: "#64748b" }}>×{b.count}</span>
+                  <span style={{fontSize: 13, color: "#cbd5e1"}}>
+                    {b.label} <span style={{color: "#64748b"}}>×{b.count}</span>
                   </span>
                   <span style={{
                     fontSize: 14, fontWeight: 600,
@@ -70,8 +81,8 @@ export function RatingBreakdown({ showBreakdown, onToggle, breakdown, ratingColo
                 padding: "10px 8px 4px", borderTop: "1px solid rgba(148,163,184,0.1)",
                 marginTop: 4,
               }}>
-                <span style={{ fontSize: 13, fontWeight: 600, color: "#94a3b8" }}>
-                  Base ({(BASE_RATING * clamp(minutes/90,0,1)).toFixed(1)}) + Events
+                <span style={{fontSize: 13, fontWeight: 600, color: "#94a3b8"}}>
+                  Base ({(BASE_RATING * clamp(minutes / 90, 0, 1)).toFixed(1)}) + Events
                 </span>
                 <span style={{
                   fontSize: 18, fontWeight: 700,
